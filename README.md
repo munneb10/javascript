@@ -1,16 +1,16 @@
 # Airbnb JavaScript Style Guide() {
 
-*A mostly reasonable approach to JavaScript*
+*JavaScript ke liye ek zyada tar sahi tareeqa.*
 
-> **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
+> **Note**: Yeh guide assume karti hai ke aap [Babel](https://babeljs.io), istemal kar rahe hain, aur zaroori hai ke aap [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) ya uske barabar koi cheez istemal karein. Yeh bhi assume karti hai ke aap apne app mein shims/polyfills install kar rahe hain, jaise [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) ya uske barabar.
 
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-This guide is available in other languages too. See [Translation](#translation)
+Yeh guide doosri zabanon mein bhi dastiyaab hai. See [Translation](#translation)
 
-Other Style Guides
+Doosre Style Guides
 
   - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
   - [React](react/)
@@ -18,7 +18,7 @@ Other Style Guides
   - [CSS & Sass](https://github.com/airbnb/css)
   - [Ruby](https://github.com/airbnb/ruby)
 
-## Table of Contents
+## Mazmoon ki fehrist
 
   1. [Types](#types)
   1. [References](#references)
@@ -63,7 +63,7 @@ Other Style Guides
 ## Types
 
   <a name="types--primitives"></a><a name="1.1"></a>
-  - [1.1](#types--primitives) **Primitives**: When you access a primitive type you work directly on its value.
+  - [1.1](#types--primitives) **Primitives**: Jab aap kisi primitive type tak rasai hasil karte hain, to aap seedha uski value par kaam karte hain.
 
     - `string`
     - `number`
@@ -84,10 +84,10 @@ Other Style Guides
     console.log(foo, bar); // => 1, 9
     ```
 
-    - Symbols and BigInts cannot be faithfully polyfilled, so they should not be used when targeting browsers/environments that don’t support them natively.
+    - Symbols aur BigInts ko sahi tarah se polyfilled nahi kiya ja sakta, isliye inka istemal un browsers/environments mein nahi karna chahiye jo inhe natively support nahi karte.
 
   <a name="types--complex"></a><a name="1.2"></a>
-  - [1.2](#types--complex)  **Complex**: When you access a complex type you work on a reference to its value.
+  - [1.2](#types--complex)  **Complex**: Jab aap kisi complex type tak rasai hasil karte hain, to aap uski value ka reference par kaam karte hain.
 
     - `object`
     - `array`
@@ -104,38 +104,38 @@ Other Style Guides
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Uper wapas jaen](#Mazmoon-ki-fehrist)**
 
 ## References
 
   <a name="references--prefer-const"></a><a name="2.1"></a>
-  - [2.1](#references--prefer-const) Use `const` for all of your references; avoid using `var`. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const), [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign)
+  - [2.1](#references--prefer-const) Apne tamam references ke liye `const` ka istemal karein; `var` ka istemal na karein. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const), [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign).
 
-    > Why? This ensures that you can’t reassign your references, which can lead to bugs and difficult to comprehend code.
+    > Kyun? Yeh is baat ko ensure karta hai ke aap apne references ko dobara assign nahi kar sakte, jo bugs aur mushkil se samajh aane wale code ka sabab ban sakta hai.
 
     ```javascript
-    // bad
+    // Bura
     var a = 1;
     var b = 2;
 
-    // good
+    // Acha
     const a = 1;
     const b = 2;
     ```
 
   <a name="references--disallow-var"></a><a name="2.2"></a>
-  - [2.2](#references--disallow-var) If you must reassign references, use `let` instead of `var`. eslint: [`no-var`](https://eslint.org/docs/rules/no-var)
+  - [2.2](#references--disallow-var) Agar aapko references ko dobara assign karna zaroori hai, to `var` ki jagah `let` ka istemal karein. [`no-var`](https://eslint.org/docs/rules/no-var)
 
-    > Why? `let` is block-scoped rather than function-scoped like `var`.
+    > Kyun? `let` block-scoped hota hai, jabke `var` function-scoped hota hai.
 
     ```javascript
-    // bad
+    // Bura
     var count = 1;
     if (true) {
       count += 1;
     }
 
-    // good, use the let.
+    // Acha, `let` ka istemal kren.
     let count = 1;
     if (true) {
       count += 1;
@@ -143,10 +143,10 @@ Other Style Guides
     ```
 
   <a name="references--block-scope"></a><a name="2.3"></a>
-  - [2.3](#references--block-scope) Note that both `let` and `const` are block-scoped, whereas `var` is function-scoped.
+  - [2.3](#references--block-scope) Note karein ke dono `let` aur `const` block-scoped hote hain, jabke `var` function-scoped hota hai.
 
     ```javascript
-    // const and let only exist in the blocks they are defined in.
+    // const aur let sirf un blocks mein exist karte hain jahan inhe define kiya gaya hai.
     {
       let a = 1;
       const b = 1;
@@ -157,27 +157,27 @@ Other Style Guides
     console.log(c); // Prints 1
     ```
 
-    In the above code, you can see that referencing `a` and `b` will produce a ReferenceError, while `c` contains the number. This is because `a` and `b` are block scoped, while `c` is scoped to the containing function.
+    Upar diye gaye code mein, aap dekhenge ke `a` aur `b` ka reference lene par ReferenceError aayegi, jabke `c` mein number maujood hai. Yeh isliye hai ke `a` aur `b` block-scoped hain, jabke `c` containing function ke scope mein hai.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Uper vapis jayen](#table-of-contents)**
 
 ## Objects
 
   <a name="objects--no-new"></a><a name="3.1"></a>
-  - [3.1](#objects--no-new) Use the literal syntax for object creation. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object)
+  - [3.1](#objects--no-new) Object creation ke liye literal syntax ka use karo. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object)
 
     ```javascript
-    // bad
+    // Bura
     const item = new Object();
 
-    // good
+    // Acha
     const item = {};
     ```
 
   <a name="es6-computed-properties"></a><a name="3.4"></a>
-  - [3.2](#es6-computed-properties) Use computed property names when creating objects with dynamic property names.
+  - [3.2](#es6-computed-properties) Dynamic property names ke sath objects create karte waqt computed property names ka use karo.
 
-    > Why? They allow you to define all the properties of an object in one place.
+    > Kyun? Yeh aapko ek jagah par object ke saare properties define karne ki suvidha dete hain.
 
     ```javascript
 
@@ -185,14 +185,14 @@ Other Style Guides
       return `a key named ${k}`;
     }
 
-    // bad
+    // Bura
     const obj = {
       id: 5,
       name: 'San Francisco',
     };
     obj[getKey('enabled')] = true;
 
-    // good
+    // Acha
     const obj = {
       id: 5,
       name: 'San Francisco',
@@ -201,10 +201,10 @@ Other Style Guides
     ```
 
   <a name="es6-object-shorthand"></a><a name="3.5"></a>
-  - [3.3](#es6-object-shorthand) Use object method shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
+  - [3.3](#es6-object-shorthand) Object method shorthand ka use karo. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
 
     ```javascript
-    // bad
+    // Bura
     const atom = {
       value: 1,
 
@@ -213,7 +213,7 @@ Other Style Guides
       },
     };
 
-    // good
+    // Acha
     const atom = {
       value: 1,
 
@@ -224,34 +224,34 @@ Other Style Guides
     ```
 
   <a name="es6-object-concise"></a><a name="3.6"></a>
-  - [3.4](#es6-object-concise) Use property value shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
+  - [3.4](#es6-object-concise) Property value shorthand ka use karo. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
 
-    > Why? It is shorter and descriptive.
+    > Kyun? Yeh chhota aur wazeh hota hai.
 
     ```javascript
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // Bura
     const obj = {
       lukeSkywalker: lukeSkywalker,
     };
 
-    // good
+    // Acha
     const obj = {
       lukeSkywalker,
     };
     ```
 
   <a name="objects--grouped-shorthand"></a><a name="3.7"></a>
-  - [3.5](#objects--grouped-shorthand) Group your shorthand properties at the beginning of your object declaration.
+  - [3.5](#objects--grouped-shorthand) Apni object declaration ke shuruat mein shorthand properties ko group karo.
 
-    > Why? It’s easier to tell which properties are using the shorthand.
+    > Kyun? Isse yeh dekhna aasan hota hai ke kaun si properties shorthand ka use kar rahi hain.
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // Bura
     const obj = {
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
@@ -261,7 +261,7 @@ Other Style Guides
       anakinSkywalker,
     };
 
-    // good
+    // Acha
     const obj = {
       lukeSkywalker,
       anakinSkywalker,
@@ -273,19 +273,19 @@ Other Style Guides
     ```
 
   <a name="objects--quoted-props"></a><a name="3.8"></a>
-  - [3.6](#objects--quoted-props) Only quote properties that are invalid identifiers. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props)
+  - [3.6](#objects--quoted-props) Sirf un properties ko quote karo jo invalid identifiers hain. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props)
 
-    > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+    > Kyun? Aam tor par isse padhna zyada asaan hota hai. Yeh syntax highlighting ko behtar banata hai, aur kai JS engines ke liye bhi zyada aasan hota hai optimize karna.
 
     ```javascript
-    // bad
+    // Bura
     const bad = {
       'foo': 3,
       'bar': 4,
       'data-blah': 5,
     };
 
-    // good
+    // Acha
     const good = {
       foo: 3,
       bar: 4,
@@ -294,22 +294,22 @@ Other Style Guides
     ```
 
   <a name="objects--prototype-builtins"></a>
-  - [3.7](#objects--prototype-builtins) Do not call `Object.prototype` methods directly, such as `hasOwnProperty`, `propertyIsEnumerable`, and `isPrototypeOf`. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
+  - [3.7](#objects--prototype-builtins) Directly `Object.prototype` methods ko call na karo, jaise ke `hasOwnProperty`, `propertyIsEnumerable`, aur `isPrototypeOf`. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
 
-    > Why? These methods may be shadowed by properties on the object in question - consider `{ hasOwnProperty: false }` - or, the object may be a null object (`Object.create(null)`). In modern browsers that support ES2022, or with a polyfill such as <https://npmjs.com/object.hasown>, `Object.hasOwn` can also be used as an alternative to `Object.prototype.hasOwnProperty.call`.
+    > Kyun? Ye methods object par properties ke zariye shadow ho sakte hain - jaise `{ hasOwnProperty: false }` - ya object ek null object (`Object.create(null)`) ho sakta hai. Modern browsers jo ES2022 ko support karte hain, ya polyfill jaisa ke <https://npmjs.com/object.hasown>, ke sath `Object.hasOwn` ko `Object.prototype.hasOwnProperty.call` ke alternative ke taur par bhi use kiya ja sakta hai.
 
     ```javascript
-    // bad
+    // Bura
     console.log(object.hasOwnProperty(key));
 
-    // good
+    // Acha
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
-    // better
+    // Behtar
     const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
     console.log(has.call(object, key));
 
-    // best
+    // Behtreen
     console.log(Object.hasOwn(object, key)); // only supported in browsers that support ES2022
 
     /* or */
